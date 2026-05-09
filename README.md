@@ -82,10 +82,9 @@ AttendInsights/
 ├── js/
 │   └── login.js
 │
-├── powerapps/
-│   ├── AttendLogin/
-│   ├── StudentDashboard/
-│   └── AdminDashboard/
+├── Backend/
+│   ├── Backend.py
+│  
 │
 ├── dataset/
 │   └── AttendanceData.xlsx
@@ -163,6 +162,8 @@ Excel Tables
 SharePoint
 REST APIs (future)
 
+Backend
+For Backend We have used the Power Automate for AI the code we build is Backend.py file 
 
 **🎯 Objectives**
 Automate attendance management
