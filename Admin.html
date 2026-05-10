@@ -599,23 +599,21 @@ INSTRUCTIONS:
 - Today's date: May 8, 2026.`;
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+   const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    'x-api-key': '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',
-    'anthropic-version': '2023-06-01',
-    'anthropic-dangerous-direct-browser-access': 'true'
+    'Authorization': 'Bearer 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'
   },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514', max_tokens: 1000,
+  body: JSON.stringify({
+    model: 'llama-3.3-70b-versatile', max_tokens: 1000,
         system: systemPrompt,
         messages: [{ role: 'user', content: msg }]
       })
     });
     const data = await res.json();
     removeAdminTyping();
-    let reply = data.content?.[0]?.text || 'Sorry, I could not get a response.';
+    let reply = data.choices?.[0]?.message?.content || 'Sorry, I could not get a response.';
     const hasExport = reply.includes('[EXPORT_READY]');
     reply = reply.replace('[EXPORT_READY]', '');
     addAdminMsg(reply, 'ai', hasExport);
