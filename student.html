@@ -591,8 +591,14 @@ async function sendChat() {
 Attendance thresholds: Warning at ≤77%, Reminder at ≤85%, Excellent at ≥95%.
 Answer the student's query based on this data. Be concise, friendly and helpful. If asked about things not in the data, say you can only answer attendance-related queries.`;
 
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
+   const res = await fetch('https://api.anthropic.com/v1/messages', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'x-api-key': 'sk-ant-YOUR_KEY_HERE',
+    'anthropic-version': '2023-06-01',
+    'anthropic-dangerous-direct-browser-access': 'true'
+  },
       body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000,
         system: studentContext, messages: [{ role: 'user', content: msg }] })
     });
